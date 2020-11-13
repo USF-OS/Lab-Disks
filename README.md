@@ -1,4 +1,4 @@
-# Lab 9: File Systems
+# File Systems
 
 In this lab assignment you will get experience working with file systems: creating a new FS, manipulating files, and inspecting the data organized on a disk.
 
@@ -6,15 +6,7 @@ In this lab assignment you will get experience working with file systems: creati
 
 As usual, everything on a Unix system is a file. The first thing we should do is find out what 'file' represents our main (boot) disk. You can use the `df` command to print out all the currently-mounted file systems, including their sizes and space available (use the `-H` option for human-readable sizes).
 
-**(1.)**-a What device file represents your root (`/`) partition?
-
-**(1.)**-b What is its serial number? You can get this with:
-
-```
-udevadm info --query=all --name=/dev/DEVICE | grep SERIAL
-```
-
-Replace `DEVICE` with the device that hosts your root partition.
+**(1.)** What device file represents your root (`/`) partition?
 
 **(2.)** What is the output of `ls -l` on this file? What is different about this file compared to most?
 
@@ -39,7 +31,7 @@ mkfs.ext4 ./my-disk
 
 The act of *mounting* a file system makes the data on a disk available to us under a particular *mount point*. A mount point is just a directory -- it doesn't have to be empty, but mounting a disk to a particular directory will hide (replace) whatever contents were there already. So most of the time, we'll mount our file systems to an empty directory.
 
-In order to mount file systems, you must be the root user. Switch to root, and then:
+In order to mount file systems, you must be the root user. Switch to root (`sudo su - `, and then:
 
 ```
 mkdir /tmp/mount
@@ -59,7 +51,7 @@ Make a directory in this new file system for your regular user account (call it 
 
 ## Manipulating The File System
 
-Back as your regular user, cd to /tmp/mount/my_files. Let's create a couple files here:
+Back as your regular user (you should `exit` if you are still root), cd to /tmp/mount/my_files. Let's create a couple files here:
 
 ```
 touch fileA
